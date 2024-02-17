@@ -9,9 +9,17 @@ server:
 spring:
   application:
     name: gateway
+
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
           lowerCaseServiceId: true
+
+      routes:
+      
+      - id: posts-service
+        uri: lb://posts-service
+        predicates:
+        - Path=/posts/**

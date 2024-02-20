@@ -1,7 +1,6 @@
 eureka:
   client:
-    serviceUrl:
-      defaultZone: http://naming-server:8761/eureka
+    enabled: false
 
 server:
   port: 8765

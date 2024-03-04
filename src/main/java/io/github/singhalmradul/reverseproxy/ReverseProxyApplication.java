@@ -1,13 +1,13 @@
-package io.github.singhalmradul.gateway;
+package io.github.singhalmradul.reverseproxy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GatewayApplication {
+public class ReverseProxyApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GatewayApplication.class, args);
+		SpringApplication.run(ReverseProxyApplication.class, args);
 	}
 
 }

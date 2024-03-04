@@ -1,13 +1,23 @@
 eureka:
   client:
-    enabled: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+logging:
+  level:
+    reactor:
+      netty: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
 
 server:
   port: 8765
 
 spring:
   application:
-    name: gateway
+    name: reverse-proxy
 
   cloud:
     gateway:
@@ -16,7 +26,19 @@ spring:
           enabled: true
           lowerCaseServiceId: true
 
+      httpclient:
+        wiretap: true
+      httpserver:
+        wiretap: true
+
       routes:
+
+      - id: authorization-server
+        uri: lb://authorization-server
+        predicates:
+        - Path=/oauth2/**
+        filters:
+        - RewritePath=/oauth2/oauth/(?<segment>.*), /oauth2/$\{segment}
 
       - id: post-service
         uri: lb://post-service

@@ -1,10 +1,10 @@
-package io.github.singhalmradul.gateway;
+package io.github.singhalmradul.reverseproxy;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GatewayApplicationTests {
+class ReverseProxyApplicationTests {
 
 	@Test
 	void contextLoads() {

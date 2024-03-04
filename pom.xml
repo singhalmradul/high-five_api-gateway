@@ -6,14 +6,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.2</version>
+		<version>3.2.3</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.github.singhalmradul</groupId>
-	<artifactId>gateway</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>gateway</name>
-	<description>high-five gateway</description>
+	<artifactId>reverse-proxy</artifactId>
+	<version>0.1.0</version>
+	<name>reverse-proxy</name>
+	<description>high-five reverse-proxy</description>
 	<properties>
 		<java.version>21</java.version>
 		<spring-cloud.version>2023.0.0</spring-cloud.version>

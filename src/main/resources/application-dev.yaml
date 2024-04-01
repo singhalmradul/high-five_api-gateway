@@ -33,8 +33,15 @@ spring:
 
       routes:
 
+      - id: like-service
+        uri: lb://like-service
+        order: -2
+        predicates:
+        - Path=/posts/*/likes/**
+
       - id: post-service
         uri: lb://post-service
+        order: -1
         predicates:
         - Path=/posts/**
 

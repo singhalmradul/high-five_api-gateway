@@ -1,7 +1,7 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://service-registry:8761/eureka
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
 
 logging:
   level:
@@ -33,6 +33,12 @@ spring:
 
       routes:
 
+      - id: follow-service
+        uri: lb://follow-service
+        order: 0
+        predicates:
+        - Path=/users/*/following/**, /users/*/followers/**
+
       - id: like-service
         uri: lb://like-service
         order: -2
@@ -43,13 +49,13 @@ spring:
         uri: lb://post-service
         order: -1
         predicates:
-        - Path=/posts/**
+        - Path=/users/*/posts/**
 
       - id: user-service
         uri: lb://user-service
+        order: 1
         predicates:
         - Path=/users/**
-
 
       globalcors:
         cors-configurations:

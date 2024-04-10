@@ -3,14 +3,14 @@ eureka:
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
 
-logging:
-  level:
-    reactor:
-      netty: INFO
-    org:
-      springframework:
-        cloud:
-          gateway: TRACE
+# logging:
+#   level:
+#     reactor:
+#       netty: INFO
+#     org:
+#       springframework:
+#         cloud:
+#           gateway: TRACE
 
 server:
   port: 8765
@@ -25,11 +25,6 @@ spring:
         locator:
           enabled: true
           lowerCaseServiceId: true
-
-      httpclient:
-        wiretap: true
-      httpserver:
-        wiretap: true
 
       routes:
 
@@ -60,6 +55,17 @@ spring:
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins: "http://localhost:3000"
+            allowedOrigins: http://localhost:3000
             allowedMethods:
             - GET
+            - HEAD
+            - PATCH
+            - OPTIONS
+            - POST
+            - PUT
+            - DELETE
+            allowedHeaders:
+            - Origin
+            - X-Requested-With
+            - Content-Type
+            - Accept

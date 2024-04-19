@@ -35,7 +35,7 @@ spring:
 
       - id: follow-service
         uri: lb://follow-service
-        order: 0
+        order: 1
         predicates:
         - Path=/users/*/following/**, /users/*/followers/**
 
@@ -45,15 +45,21 @@ spring:
         predicates:
         - Path=/posts/*/likes/**
 
+      - id: comment-service
+        uri: lb://comment-service
+        order: -1
+        predicates:
+        - Path=/posts/*/comments/**
+
       - id: post-service
         uri: lb://post-service
-        order: -1
+        order: 0
         predicates:
         - Path=/users/*/posts/**
 
       - id: user-service
         uri: lb://user-service
-        order: 1
+        order: 2
         predicates:
         - Path=/users/**
 

@@ -3,21 +3,21 @@ eureka:
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
 
-# logging:
-#   level:
-#     reactor:
-#       netty: INFO
-#     org:
-#       springframework:
-#         cloud:
-#           gateway: TRACE
+logging:
+  level:
+    reactor:
+      netty: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
 
 server:
   port: 8765
 
 spring:
   application:
-    name: reverse-proxy
+    name: api-gateway
 
   cloud:
     gateway:
@@ -26,10 +26,10 @@ spring:
           enabled: true
           lowerCaseServiceId: true
 
-      # httpclient:
-      #   wiretap: true
-      # httpserver:
-      #   wiretap: true
+      httpclient:
+        wiretap: true
+      httpserver:
+        wiretap: true
 
       routes:
 
@@ -63,10 +63,16 @@ spring:
         predicates:
         - Path=/users/**
 
+      - id: authorisation-server
+        uri: ${AUTHORIZATION_SERVER_URI:http://localhost:9000}
+        order: 3
+        predicates:
+        - Path=/.well-known/openid-configuration,/oauth2/**, /userinfo/**, /connect/**
+
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins: http://localhost:3000
+            allowedOrigins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000}
             allowedMethods:
             - GET
             - HEAD

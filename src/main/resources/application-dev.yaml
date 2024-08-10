@@ -17,7 +17,7 @@ server:
 
 spring:
   application:
-    name: reverse-proxy
+    name: api-gateway
 
   cloud:
     gateway:
@@ -57,6 +57,13 @@ spring:
         order: 2
         predicates:
         - Path=/users/**
+
+      - id: authorisation-server
+        uri: ${AUTHORIZATION_SERVER_URI:http://localhost:9000}
+        order: 3
+        predicates:
+        - Path=/.well-known/openid-configuration,/oauth2/**, /userinfo/**, /connect/**
+
 
       globalcors:
         cors-configurations:
